@@ -2,6 +2,7 @@
 import type { Category } from "~/utils/types/models/Category";
 import type { Tag } from "~/utils/types/models/Tag";
 import type {AxiosResponse} from "axios";
+import CreateCategory from "~/components/CreateCategory.vue";
 const api = useNuxtApp().$api;
 const tags = ref<Tag[]>([]);
 const categories = ref<Category[]>([]);
@@ -28,15 +29,6 @@ function listCategories() {
   })
 }
 
-function createCategory(name: string ) {
-  api.post('/create-category', {
-    name: name,
-  })
-      .then((response: AxiosResponse) => {
-        categories.value.unshift(response.data);
-      })
-}
-
 function destroyCategory(id: number | string) {
   api.delete(`/destroy-category/${id}`, {withCredentials: true})
       .then((response: AxiosResponse) => {
@@ -50,12 +42,19 @@ function destroyTag(id: number | string) {
         tags.value = tags.value.filter((c: Tag) => c.id !== id);
       })
 }
+
+function handleCreate(category: Category) {
+  categories.value.push(category);
+}
 </script>
 
 <template>
   <main>
     <div v-if="isHacker" class="font-extrabold text-9xl">
       You're one curious fella huh.
+    </div>
+    <div>
+      <CreateCategory @created="handleCreate" />
     </div>
     <div>
       Categories: <br>
