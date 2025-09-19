@@ -31,14 +31,14 @@ function listCategories() {
 
 function destroyCategory(id: number | string) {
   api.delete(`/destroy-category/${id}`, {withCredentials: true})
-      .then((response: AxiosResponse) => {
+      .then(() => {
         categories.value = categories.value.filter((c: Category) => c.id !== id);
       })
 }
 
 function destroyTag(id: number | string) {
   api.delete(`/destroy-tag/${id}`, {withCredentials: true})
-      .then((response: AxiosResponse) => {
+      .then(() => {
         tags.value = tags.value.filter((c: Tag) => c.id !== id);
       })
 }
