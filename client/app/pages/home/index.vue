@@ -24,7 +24,7 @@ function loadMore(): void {
 </script>
 
 <template>
-  <main>
+  <main class="m-4">
     <div v-for="article in articles" :key="article.id">
       <div class="flex flex-col">
         <div>
