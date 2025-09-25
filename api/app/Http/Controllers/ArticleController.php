@@ -14,8 +14,16 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     public function listLatestArticles() {
-        $articles = Article::with('tags', 'category')->latest()->simplePaginate(10);
-        return response()->json(ArticleResource::collection($articles));
+        $articles = Article::with('tags', 'category')
+            ->latest()
+            ->paginate(10);
+
+        return response()->json([
+            'data' => ArticleResource::collection($articles),
+            'links' => [
+                'next' => $articles->nextPageUrl(),
+            ]
+        ]);
     }
 
     public function listOwnArticles(Request $request) {

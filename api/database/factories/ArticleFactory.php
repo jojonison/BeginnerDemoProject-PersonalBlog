@@ -25,7 +25,7 @@ class ArticleFactory extends Factory
             'post' => fake()->paragraph(),
             'image' => fake()->imageUrl(),
             'category_id' => Category::factory(),
-            'user_id' => User::factory(),
+            'user_id' => null,
         ];
     }
 

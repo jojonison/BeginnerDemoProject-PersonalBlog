@@ -23,7 +23,7 @@ function fetchArticle(): void {
     <NuxtLink :to="`/home`" class="hover:text-blue-600 hover:underline">< Back To All Posts</NuxtLink>
     <span>Category: {{article.category?.name}}</span>
     <h1 class="text-2xl font-bold">{{ article.title }}</h1>
-    <p>{{ article.post }}</p>
+    <p class="leading-relaxed whitespace-pre-line">{{ article.post }}</p>
     <hr/>
     <img v-if="article.image" :src="article.image" class="max-w-md" alt="caption" />
     <hr/>

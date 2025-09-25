@@ -4,15 +4,22 @@ import type {AxiosResponse} from "axios";
 const api = useNuxtApp().$api;
 
 const articles = ref<Article[]>([]);
-
+const nextPageUrl = ref<string|null>(null);
 onMounted(() => {
-  listArticles();
+  listArticles('/list-articles');
 });
-function listArticles(): void {
-  api.get('/list-articles', { withCredentials: true })
-      .then((response:AxiosResponse<Article[]>) => {
-        articles.value = response.data;
-      })
+function listArticles(url: string): void {
+  api.get(url, { withCredentials: true })
+      .then((response: AxiosResponse<{ data: Article[], links: { next: string|null } }>) => {
+        articles.value.push(...response.data.data);
+        nextPageUrl.value = response.data.links.next;
+      });
+}
+
+function loadMore(): void {
+  if (nextPageUrl.value) {
+    listArticles(nextPageUrl.value);
+  }
 }
 </script>
 
@@ -30,6 +37,9 @@ function listArticles(): void {
         </NuxtLink>
         <hr/>
       </div>
+    </div>
+    <div v-if="nextPageUrl" class="mt-4">
+      <UButton color="primary" @click="loadMore">Load More</UButton>
     </div>
   </main>
 </template>
