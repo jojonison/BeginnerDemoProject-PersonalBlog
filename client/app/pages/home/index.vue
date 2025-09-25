@@ -26,9 +26,13 @@ function loadMore(): void {
 <template>
   <main>
     <div v-for="article in articles" :key="article.id">
-      <div>
-        Title: {{ article.title }}
-        Category: {{ article.category.name }}
+      <div class="flex flex-col">
+        <div>
+          <span class="font-bold">Title: </span>{{ article.title }}
+        </div>
+        <div>
+          <span class="font-bold">Category: </span>{{ article.category.name }}
+        </div>
         <div v-for="tag in article.tags" :key="tag.id">
           <UBadge color="neutral">{{ tag.name }}</UBadge>
         </div>

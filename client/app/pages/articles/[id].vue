@@ -19,9 +19,11 @@ function fetchArticle(): void {
 </script>
 
 <template>
-  <main v-if="article">
-    <NuxtLink :to="`/home`" class="hover:text-blue-600 hover:underline">< Back To All Posts</NuxtLink>
-    <span>Category: {{article.category?.name}}</span>
+  <main v-if="article" class="m-2">
+    <div class="flex flex-col">
+      <NuxtLink :to="`/home`" class="hover:text-blue-600 hover:underline">↩️Back</NuxtLink>
+      <span class="font-bold">Category: </span>{{article.category?.name}}
+    </div>
     <h1 class="text-2xl font-bold">{{ article.title }}</h1>
     <p class="leading-relaxed whitespace-pre-line">{{ article.post }}</p>
     <hr/>
