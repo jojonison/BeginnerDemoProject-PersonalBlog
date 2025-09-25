@@ -20,11 +20,9 @@ function fetchArticle(): void {
 
 <template>
   <main v-if="article" class="m-2">
-    <div class="flex flex-col">
-      <NuxtLink :to="`/home`" class="hover:text-blue-600 hover:underline">↩️Back</NuxtLink>
-      <span class="font-bold">Category: </span>{{article.category?.name}}
-    </div>
+    <NuxtLink :to="`/home`" class="hover:text-blue-600 hover:underline">↩️Back</NuxtLink>
     <h1 class="text-2xl font-bold">{{ article.title }}</h1>
+    <span class="font-bold">Category: </span>{{article.category?.name}}
     <p class="leading-relaxed whitespace-pre-line">{{ article.post }}</p>
     <hr/>
     <img v-if="article.image" :src="article.image" class="max-w-md" alt="caption" />
