@@ -45,5 +45,11 @@ function loadMore(): void {
     <div v-if="nextPageUrl" class="mt-4">
       <UButton color="primary" @click="loadMore">Load More</UButton>
     </div>
+    <footer class="py-5">
+      <hr/>
+      <div class="flex flex-col justify-center text-center">
+        Made with Vibes
+      </div>
+    </footer>
   </main>
 </template>
